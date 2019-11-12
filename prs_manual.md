@@ -23,14 +23,20 @@ This manual and all scripts assume the following directory structure:
 ├── coordination
 ├── genotypes
 ├── gwas
+├── mfi
 ├── reference_genotypes
+├── sample_info
 ├── scores
 └── weights
 ```
 
-Where all directories are *empty*, except for `genotypes`, which contains all your plink genotype/SNP data, and `sample_info` for your fam files.
+Where all directories are *empty*, except for:
+* `genotypes` containing all your plink genotype/SNP data
+* `sample_info` for your fam files,
+* `mfi` containing MAF and imputation quality information
+
 You can use [`make_dirs`](make_dirs) to create all the empty directories in one step.
-I recommend creating the `genotypes` directory as a symlink to the shared directory holding all your required data.
+I recommend creating the non-empty directories as symlinks to the shared locations holding all your required data.
 
 ## Preparing the LD Estimation
 
