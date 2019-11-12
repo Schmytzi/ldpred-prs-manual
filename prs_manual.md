@@ -102,7 +102,7 @@ write.table(files, "merge_files.txt", quote=F, row.names=F)
 
 The first line must be excluded because that data set will be used as the main dataset in the Plink call.
 
-Please see `merge.slurm` for the merging script.
+Please see [`merge.slurm`](merge.slurm) for the merging script.
 
 ## Genotype Coordination
 The first step of 
