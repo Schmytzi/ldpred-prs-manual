@@ -28,7 +28,7 @@ This manual and all scripts assume the following directory structure:
 └── weights
 ```
 
-Where all directories are *empty*, except for `genotypes`, which contains all your plink genotype/sample/SNP data.
+Where all directories are *empty*, except for `genotypes`, which contains all your plink genotype/SNP data, and `sample_info` for your fam files.
 You can use [`make_dirs`](make_dirs) to create all the empty directories in one step.
 I recommend creating the `genotypes` directory as a symlink to the shared directory holding all your required data.
 
@@ -68,7 +68,7 @@ A good option is to use 5000 random non-related individuals.
 You can extract this kind of set with the following command:
 
 ```
-shuf -n 5000 <Your sample file> > 5000_individuals.txt
+shuf -n 5000 sample_info/samples.fam > 5000_individuals.txt
 ```
 
 LDpred works on Plink 1 binary (i.e. bed/bim/fam) files.
