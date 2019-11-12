@@ -9,8 +9,8 @@
 
 module load bioinfo-tools LDpred/1.0.8
 ldpred gibbs \
-  --ld_radius 0 \
-  --local_ld_file_prefix UKB_LD \
+  --ldr 0 \
+  --ldf ld/ld_pattern \
   --N 0 \
   --coord coordination/coordination.coord \
   --out weights/weights

@@ -103,4 +103,8 @@ After the coordination is done, you can estimate SNP weights.
 Please see [`estimate_weights.slurm`](estimate_weights.slurm) for a template.
 The call has two parameters which need adjustment:
 * `N`: The number of individuals in your GWAS (analogous to the coordination step)
-* `
+* `ldr`: The LD radius, i.e. the number of SNPs around the focal SNP which LD should be adjusted for. Recommended value: # of total SNPs / 3000
+
+The LD pattern is saved to the file given as the parameter `ldf`.
+This file can be reused across analyses.
+If it doesn't exist, it will be created, which may take several hours.
