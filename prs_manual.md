@@ -88,17 +88,7 @@ Unfortunately, Plink 2 doesn't support merging, yet, so we must do it with Plink
 Once merging is implemented in version 2, this step can be combined with the one above into one step.
 
 First, you must create a list of all data sets to be merged.
-This is possible using the following R snippet.
-The working directory is assumed to be the output directory of the extraction step
-```R
-bed <- list.files(pattern="*bed")
-bim <- list.files(pattern="*bim")
-fam <- list.files(pattern="*fam")
-
-files <- data.table(bed, bim, fam)
-files <- files[-1]
-write.table(files, "merge_files.txt", quote=F, row.names=F)
-```
+You can use [`create_merge_list.R`](create_merge_list.R) for that.
 
 The first line must be excluded because that data set will be used as the main dataset in the Plink call.
 
