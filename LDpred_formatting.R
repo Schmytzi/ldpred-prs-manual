@@ -5,22 +5,18 @@
 # You might want to use some intermediate results
 # Use AT LEAST 8 cores on Bianca. The combined dataset is huge
 
-# PARAMETERS:
-mfi_directory <- ""
-gwas_directory <- ""
-
 library(data.table)
 library(magrittr)
 library(stringr)
 
 # Load pre-computed SNP metadata
-mfi <- list.files(path=mfi_directory, pattern="*mfi_chr*", full.names=TRUE) %>% 
+mfi <- list.files(path="mfi", pattern="*mfi_chr*", full.names=TRUE) %>% 
     lapply(fread, header=FALSE) %>% 
     rbindlist()
 names(mfi) <- c("SNP", "ID", "POS", "A1", "A2", "MAF", "MA", "INFO")
 
 # Load GWAS summary
-gwas <- list.files(path=gwas_directory, pattern="*linear", full.names=TRUE) %>%
+gwas <- list.files(path="gwas", pattern="*linear", full.names=TRUE) %>%
     lapply(fread) %>%
     rbindlist()
 # Discard all rows without results
@@ -62,4 +58,4 @@ ldpred[, chr := paste0("chr", chr)]
 # This might have changed in version 1.0.8
 ldpred[pval == 0, pval := 2.23e-308]
 
-write.table(ldpred, "LDpred_format.txt", quote=FALSE, row.names=FALSE)
+write.table(ldpred, "gwas/LDpred_format.txt", quote=FALSE, row.names=FALSE)
