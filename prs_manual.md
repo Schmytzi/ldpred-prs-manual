@@ -23,6 +23,7 @@ This manual and all scripts assume the following directory structure:
 ├── coordination
 ├── genotypes
 ├── gwas
+├── ld
 ├── mfi
 ├── reference_genotypes
 ├── sample_info
@@ -99,3 +100,7 @@ Before submitting a job you *must* adjust parameter `N`, which is the number of 
 
 ## Estimating SNP weights
 After the coordination is done, you can estimate SNP weights.
+Please see [`estimate_weights.slurm`](estimate_weights.slurm) for a template.
+The call has two parameters which need adjustment:
+* `N`: The number of individuals in your GWAS (analogous to the coordination step)
+* `
