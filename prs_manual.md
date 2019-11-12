@@ -93,4 +93,9 @@ You can use [`create_merge_list.R`](create_merge_list.R) for that.
 Please see [`merge.slurm`](merge.slurm) for the merging script.
 
 ## Genotype Coordination
-The first step of 
+The first step of your LDpred analysis is the coordination of your genotyping data and GWAS summary.
+Please see [`coord.slurm`](coord.slurm) for the appropriate script.
+Before submitting a job you *must* adjust parameter `N`, which is the number of individuals in your GWAS.
+
+## Estimating SNP weights
+After the coordination is done, you can estimate SNP weights.
