@@ -90,8 +90,6 @@ Once merging is implemented in version 2, this step can be combined with the one
 First, you must create a list of all data sets to be merged.
 You can use [`create_merge_list.R`](create_merge_list.R) for that.
 
-The first line must be excluded because that data set will be used as the main dataset in the Plink call.
-
 Please see [`merge.slurm`](merge.slurm) for the merging script.
 
 ## Genotype Coordination
