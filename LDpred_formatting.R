@@ -53,9 +53,11 @@ ldpred <- merged[, .(
 setkey(ldpred, chr, pos)
 # LDpred expects all chromosome specifications to start with "chr"
 ldpred[, chr := paste0("chr", chr)]
+
+# FOR LDPRED < 1.0.0 ONLY:
 # LDpred version 0.9.9 cannot handle P values that have been rounded to 0.
 # Therefore, replace all 0s with values close to the minimum possible.
-# This might have changed in version 1.0.8
-ldpred[pval == 0, pval := 2.23e-308]
+# Uncomment the following line if you're using an old version of LDpred
+# ldpred[pval == 0, pval := 2.23e-308]
 
 write.table(ldpred, "gwas/LDpred_format.txt", quote=FALSE, row.names=FALSE)
