@@ -102,7 +102,7 @@ The first step of your LDpred analysis is the coordination of your genotyping da
 Please see [`coord.slurm`](coord.slurm) for the appropriate script.
 Before submitting a job you *must* adjust parameter `N`, which is the number of individuals in your GWAS.
 
-*Note:* If the coordination fails and you want to restart it, remove the file `coordination/coordination.coord` first.
+**Important:** If the coordination fails and you want to restart it, remove the file `coordination/coordination.coord` first.
 Otherwise the job will fail, again.
 
 ## Estimating SNP weights
