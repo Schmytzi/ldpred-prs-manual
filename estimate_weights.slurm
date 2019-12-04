@@ -10,5 +10,5 @@ ldpred gibbs \
   --ldr 0 \
   --ldf ld/ld_pattern \
   --N 0 \
-  --coord coordination/coordination.coord \
+  --cf coordination/coordination.coord \
   --out weights/weights
