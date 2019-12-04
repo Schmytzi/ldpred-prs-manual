@@ -4,7 +4,7 @@
 #SBATCH -J coord
 #SBATCH -p node
 #SBATCH -N 1
-#SBATCH -t 3-00:00:00
+#SBATCH -t 7:00:00
 #SBATCH -C fat
 
 # DO NOT FORGET to provide a valid value for N
