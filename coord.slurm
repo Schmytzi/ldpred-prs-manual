@@ -13,4 +13,5 @@ ldpred coord \
   --gf reference_genotypes/merged \
   --ssf gwas/LDpred_format.txt \
   --N 0 \
+  --ssf-format STANDARD \
   --out coordination/coordination.coord
