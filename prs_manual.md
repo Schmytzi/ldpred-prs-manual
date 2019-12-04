@@ -102,6 +102,9 @@ The first step of your LDpred analysis is the coordination of your genotyping da
 Please see [`coord.slurm`](coord.slurm) for the appropriate script.
 Before submitting a job you *must* adjust parameter `N`, which is the number of individuals in your GWAS.
 
+*Note:* If the coordination fails and you want to restart it, remove the file `coordination/coordination.coord` first.
+Otherwise the job will fail, again.
+
 ## Estimating SNP weights
 After the coordination is done, you can estimate SNP weights.
 Please see [`estimate_weights.slurm`](estimate_weights.slurm) for a template.
@@ -118,7 +121,7 @@ ldpred gibbs --help
 ```
 
 The LD pattern is saved to the file given as the parameter `ldf`.
-This file can be reused across analyses.
+This file can be reused across analyses which use the same LD radius.
 If it doesn't exist, it will be created, which may take several hours.
 
 ## Calculating Your Scores
