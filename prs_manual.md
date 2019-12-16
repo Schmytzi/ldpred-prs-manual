@@ -110,7 +110,12 @@ After the coordination is done, you can estimate SNP weights.
 Please see [`estimate_weights.slurm`](estimate_weights.slurm) for a template.
 The call has two parameters which need adjustment:
 * `N`: The number of individuals in your GWAS (analogous to the coordination step)
-* `ldr`: The LD radius, i.e. the number of SNPs around the focal SNP which LD should be adjusted for. Recommended value: # of total SNPs / 3000
+* `ldr`: The LD radius, i.e. the number of SNPs around the focal SNP which LD should be adjusted for. Recommended value: # of total SNPs / 3000.
+
+**Important:**
+For the UK Biobank data the recommended LD radius is 2900.
+However, the larger your radius, the higher LDpred's memory usage.
+In this case, it is more than 256 GB.
 
 The optional parameter `f` is used to specify the fraction of causal variants assumed by LDpred.
 It defaults to `1 0.1 0.01 0.001 0.3 0.03 0.003 inf`.
