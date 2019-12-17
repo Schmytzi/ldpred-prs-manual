@@ -1,7 +1,18 @@
 # Polygenic Risk Score Estimation with LDpred and PLINK
 
 ## Requirements
+
 This procedure requires LDpred and PLINK (Version 1 *and* 2) to be installed.
+They're installed on all UPPMAX systems and you can load them like this:
+
+```
+module add \
+  bioinfo-tools \
+  LDpred/1.0.8 \
+  plink/1.90b4.9 \
+  plink2/2.00-alpha-2-20190429
+```
+
 Furthermore, the following R packages should be installed:
 
 * data.table
@@ -13,7 +24,6 @@ They are available in the `R_packages` module on UPPMAX.
 All scripts are provided as separate Slurm and R files but they need some customization for your specific use-case.
 I make heavy use of Slurm Job Arrays to parallelize the operations.
 If you aren't familiar with them, the [documentation on the slurm website](https://slurm.schedmd.com/job_array.html) is pretty good.
-
 
 ## Directory Structure
 This manual and all scripts assume the following directory structure:
@@ -135,7 +145,7 @@ It's best to check the documentation using
 ldpred gibbs --help
 ```
 
-The LD pattern is saved to the file given as the parameter `ldf`.
+The LD pattern is saved to a file named `<ldf>_LDpred_<ldr>`.
 This file can be reused across analyses which use the same LD radius.
 If it doesn't exist, it will be created, which may take several hours.
 
