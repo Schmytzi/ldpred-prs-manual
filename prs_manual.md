@@ -22,18 +22,28 @@ This manual and all scripts assume the following directory structure:
 .
 ├── coordination
 ├── genotypes
+│   ├── chr1.bed
+│   ├── chr1.bim
+│   ├── chr1.dedup.bim
+│   └── ...
 ├── gwas
 ├── ld
 ├── mfi
+│   ├── _004_ukb_mfi_chr1_v3.txt
+│   ├── _004_ukb_mfi_chr2_v3.txt
+│   └── ...
 ├── reference_genotypes
 ├── sample_info
+│   ├── estimation.ids
+│   ├── samples.fam
+│   └── validation.ids
 ├── scores
 └── weights
 ```
 
 Where all directories are *empty*, except for:
 * `genotypes` containing all your plink genotype/SNP data
-* `sample_info` for your fam files,
+* `sample_info` for your fam files and ID lists of your cohorts for LD-pattern estimation and validation,
 * `mfi` containing MAF and imputation quality information
 
 You can use [`make_dirs`](make_dirs) to create all the empty directories in one step.
@@ -78,7 +88,7 @@ A good option is to use 5000 random non-related individuals.
 You can extract this kind of set with the following command:
 
 ```
-shuf -n 5000 sample_info/samples.fam > 5000_individuals.txt
+shuf -n 5000 sample_info/samples.fam > sample_info/estimation.ids
 ```
 
 LDpred works on Plink 1 binary (i.e. bed/bim/fam) files.
@@ -132,3 +142,4 @@ If it doesn't exist, it will be created, which may take several hours.
 ## Calculating Your Scores
 After LDpred has finished estimation LD and SNP weights, it's time to finally compute polygenic risk scores.
 I did it with plink but this functionality is offered by LDpred, as well.
+However, both tools use different algorithms, so do not expect the results to be the same.

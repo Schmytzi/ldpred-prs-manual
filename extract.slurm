@@ -16,7 +16,7 @@ plink2 \
   --pgen genotypes/chr${chr}.pgen \
   --psam sample_info/samples.fam \
   --pvar genotypes/chr${chr}.dedup.bim \
-  --keep 5000_individuals.txt \
+  --keep sample_info/estimation.ids \
   --maf 0.01 \
   --geno 0.05 \
   --hwe 1e-20 \
