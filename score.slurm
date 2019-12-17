@@ -9,17 +9,22 @@
 module load bioinfo-tools plink/1.90b4.9 
 
 let "chr = $SLURM_ARRAY_TASK_ID % 22 + 1"
-let "col = $SLURM_ARRAY_TASK_ID / 22 + 6"
-col_name=$(head -n 1 all_weights.txt | cut -d ' ' -f $col)
+let "file = $SLURM_ARRAY_TASK_ID / 22"
 
-echo "Scoring chromosome $chr and column $col_name"
+# Get the weights file we're going to work with
+all_weight_files=(weights/*)
+weight_file=${all_weight_files[$file]}
+
+# Get the basename of the file for reporting writing to the correct path
+weight_basename=$(basename $weight_file)
+echo "Scoring chromosome $chr with weights from $weight_basename."
 
 mkdir -p scores/col$col
 
 plink \
   --bed genotypes/chr${chr}.bed \
   --bim genotypes/chr${chr}.dedup.bim \
-  --fam sample_inf/sample.fam \
-  --score weights/all_weights.txt 3 5 $col header sum \
+  --fam sample_info/samples.fam \
+  --score $weight_file 3 5 6 header sum \
   --keep sample_info/validation.ids \
-  --out scores/col$col/scores_chr${chr}
+  --out scores/$weight_basename/scores_chr${chr}
