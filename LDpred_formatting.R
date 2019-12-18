@@ -9,6 +9,30 @@ library(data.table)
 library(magrittr)
 library(stringr)
 
+# Set to TRUE for quantitative phenotypes
+is_binary <- FALSE
+
+get_gwas <- function(file_pattern){
+    list.files(path="gwas", pattern=file_pattern, full.names=TRUE) %>%
+        lapply(fread) %>%
+        rbindlist()
+}
+
+convert_to_ldpred <- function(data, effect_column) {
+    data[, .(
+        chr = CHR,
+        pos = POS.x,
+        ref = REF,
+        alt = ALT,
+        # If the reference is the minor allele -> MAF = reffrq, else MAF refers to the alt's freq
+        reffrq = ifelse(A1.y == REF, MAF, 1 - MAF),
+        info = INFO,
+        rs = rsIds,
+        pval = P,
+        effalt = effect_column
+    )]
+}
+
 # Load pre-computed SNP metadata
 mfi <- list.files(path="mfi", pattern="*mfi_chr*", full.names=TRUE) %>% 
     lapply(fread, header=FALSE) %>% 
@@ -16,9 +40,7 @@ mfi <- list.files(path="mfi", pattern="*mfi_chr*", full.names=TRUE) %>%
 names(mfi) <- c("SNP", "ID", "POS", "A1", "A2", "MAF", "MA", "INFO")
 
 # Load GWAS summary
-gwas <- list.files(path="gwas", pattern="*linear", full.names=TRUE) %>%
-    lapply(fread) %>%
-    rbindlist()
+gwas <- get_gwas(ifelse(is_binary, "*logistic", "*linear"))
 # Discard all rows without results
 gwas <- gwas[complete.cases(gwas)]
 # Sometimes, we must force R to treat the P values as number
@@ -37,18 +59,7 @@ setnames(gwas, "#CHROM", "CHR")
   # Merged on old IDs, so the deduplicated rsIDs are in column ID.y
   rsIds <- merged$ID.y
 
-ldpred <- merged[, .(
-    chr = CHR,
-    pos = POS.x,
-    ref = REF,
-    alt = ALT,
-    # If the reference is the minor allele -> MAF = reffrq, else MAF refers to the alt's freq
-    reffrq = ifelse(A1.y == REF, MAF, 1 - MAF),
-    info = INFO,
-    rs = rsIds,
-    pval = P,
-    effalt = BETA
-)]
+ldpred <- convert_to_ldpred(merged, ifelse(is_binary, merged$OR, merged$BETA))
 # Ensure proper ordering
 setkey(ldpred, chr, pos)
 # LDpred expects all chromosome specifications to start with "chr"
