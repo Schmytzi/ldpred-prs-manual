@@ -145,7 +145,7 @@ It's best to check the documentation using
 ldpred gibbs --help
 ```
 
-The LD pattern is saved to a file named `<ldf>_LDpred_<ldr>`.
+The LD pattern is saved to a file named `<ldf>_ldradius<ldr>.pkl.gz` in directory `ld`.
 This file can be reused across analyses which use the same LD radius.
 If it doesn't exist, it will be created, which may take several hours.
 
