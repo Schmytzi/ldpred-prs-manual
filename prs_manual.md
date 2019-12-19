@@ -52,6 +52,7 @@ This manual and all scripts assume the following directory structure:
 ```
 
 Where all directories are *empty*, except for:
+
 * `genotypes` containing all your plink genotype/SNP data
 * `sample_info` for your fam files and ID lists of your cohorts for LD-pattern estimation and validation,
 * `mfi` containing MAF and imputation quality information
@@ -74,6 +75,7 @@ chr pos ref alt reffrq info rs pval effalt
 ```
 
 Where:
+
 * `chr` is the SNP's chromosome
 * `pos` is the SNP's base pair
 * `ref` is the reference allele
@@ -129,6 +131,7 @@ Otherwise the job will fail, again.
 After the coordination is done, you can estimate SNP weights.
 Please see [`estimate_weights.slurm`](estimate_weights.slurm) for a template.
 The call has two parameters which need adjustment:
+
 * `N`: The number of individuals in your GWAS (analogous to the coordination step)
 * `ldr`: The LD radius, i.e. the number of SNPs around the focal SNP which LD should be adjusted for. Recommended value: # of total SNPs / 3000.
 
@@ -141,6 +144,7 @@ The optional parameter `f` is used to specify the fraction of causal variants as
 It defaults to `1 0.1 0.01 0.001 0.3 0.03 0.003 inf`.
 There are many additional arguments you can tinker with.
 It's best to check the documentation using
+
 ```
 ldpred gibbs --help
 ```
