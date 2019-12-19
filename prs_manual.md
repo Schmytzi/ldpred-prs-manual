@@ -153,3 +153,12 @@ If it doesn't exist, it will be created, which may take several hours.
 After LDpred has finished estimation LD and SNP weights, it's time to finally compute polygenic risk scores.
 I did it with plink but this functionality is offered by LDpred, as well.
 However, both tools use different algorithms, so do not expect the results to be the same.
+
+Because genotyping files are split by chromosome, scores must be calculated separately for each of them.
+The results are then summed up for each individual.
+The script [`score.slurm`](score.slurm) can be used to submit the calculation for each chromosome and assumed fraction of causal SNPs.
+If you used default parameters in all preceding steps, you needn't change anything.
+However, if you modified the assumed fractions, the number of array jobs must be adjusted to $\# fractions * \# chromosomes$ (default: 176).
+
+*Note:* This will spawn *a lot* of relatively short jobs, which will probably clog up your queue.
+You should warn your colleagues beforehand in case they need to submit urgent tasks to the cluster.
