@@ -162,7 +162,9 @@ Because genotyping files are split by chromosome, scores must be calculated sepa
 The results are then summed up for each individual.
 The script [`score.slurm`](score.slurm) can be used to submit the calculation for each chromosome and assumed fraction of causal SNPs.
 If you used default parameters in all preceding steps, you needn't change anything.
-However, if you modified the assumed fractions, the number of array jobs must be adjusted to $\# fractions * \# chromosomes$ (default: 176).
+However, if you modified the assumed fractions, the range of array job indexes must be adjusted.
+You need $j = \# fractions * \# chromosomes$ jobs.
+Therefore, the index range must be 0-($j-1$) (default: 0-175).
 
 *Note:* This will spawn *a lot* of relatively short jobs, which will probably clog up your queue.
 You should warn your colleagues beforehand in case they need to submit urgent tasks to the cluster.
