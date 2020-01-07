@@ -14,7 +14,9 @@ import h5py
 # File acts as a dict with additional methods
 file = h5py.File('filename', 'r')
 
-# Do stuff
+# Do stuff...
+
+# It's still a file object! Close it when you're done!
 file.close()
 ```
 
