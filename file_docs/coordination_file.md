@@ -1,11 +1,24 @@
 # Documentation of Coordination File Format
 
+## General Information
 LDpred generates a coordination file at the end of the `coord` step.
 It's a Hierarchical Data Format Version 5 (HDFv5) file.
 
+## Reading the File
 This is a binary format.
-You can read HDFv5 files in python using the package `h5py`.
+You can read HDFv5 files in python using the package `h5py`:
 
+```python
+import h5py
+
+# File acts as a dict with additional methods
+file = h5py.File('filename', 'r')
+
+# Do stuff
+file.close()
+```
+
+## Data Structure
 ```
 /
 ├── cord_data [sic!]
