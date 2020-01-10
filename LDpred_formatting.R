@@ -22,10 +22,12 @@ convert_to_ldpred <- function(data, effect_column) {
     data[, .(
         chr = CHR,
         pos = POS.x,
-        ref = REF,
-        alt = ALT,
-        # If the reference is the minor allele -> MAF = reffrq, else MAF refers to the alt's freq
-        reffrq = ifelse(A1.y == REF, MAF, 1 - MAF),
+        a1 = A1.x,
+        # AX is a comma-separated list of all non-A1 alleles
+        # If the input bim hasn't been deduplicated, this can lead to invalid output 
+        a2 = AX,
+        # reffrq is not the reference's freq, but the reference minor allele frequency
+        reffrq = MAF,
         info = INFO,
         rs = rsIds,
         pval = P,
