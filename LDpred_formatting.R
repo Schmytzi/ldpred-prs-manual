@@ -22,10 +22,10 @@ convert_to_ldpred <- function(data, effect_column) {
     data[, .(
         chr = CHR,
         pos = POS.x,
-        a1 = A1.x,
-        # AX is a comma-separated list of all non-A1 alleles
+        ref = A1.x,
+        # A2 is a comma-separated list of all non-A1 alleles
         # If the input bim hasn't been deduplicated, this can lead to invalid output 
-        a2 = AX,
+        alt = A2,
         # reffrq is not the reference's freq, but the reference minor allele frequency
         reffrq = MAF,
         info = INFO,
@@ -42,7 +42,7 @@ mfi <- list.files(path="mfi", pattern="*mfi_chr*", full.names=TRUE) %>%
 names(mfi) <- c("SNP", "ID", "POS", "A1", "A2", "MAF", "MA", "INFO")
 
 # Load GWAS summary
-gwas <- get_gwas(ifelse(is_binary, "*logistic", "*linear"))
+gwas <- get_gwas(if (is_binary) "*logistic" else "*linear")
 # Discard all rows without results
 gwas <- gwas[complete.cases(gwas)]
 # Sometimes, we must force R to treat the P values as number
@@ -61,7 +61,7 @@ setnames(gwas, "#CHROM", "CHR")
   # Merged on old IDs, so the deduplicated rsIDs are in column ID.y
   rsIds <- merged$ID.y
 
-ldpred <- convert_to_ldpred(merged, ifelse(is_binary, merged$OR, merged$BETA))
+ldpred <- convert_to_ldpred(merged, if (is_binary) merged$OR else merged$BETA)
 # Ensure proper ordering
 setkey(ldpred, chr, pos)
 # LDpred expects all chromosome specifications to start with "chr"
