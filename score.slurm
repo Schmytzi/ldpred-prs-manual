@@ -2,7 +2,7 @@
 #SBATCH -A sens2017538
 #SBATCH -J Scoring
 #SBATCH -p core
-#SBATCH -n 3
+#SBATCH -n 1
 #SBATCH -t 8:00:00
 #SBATCH -a 0-175
 
