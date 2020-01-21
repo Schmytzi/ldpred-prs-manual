@@ -153,7 +153,7 @@ See the following table to get an idea about the necessary power and time:
 
 The optional parameter `f` is used to specify the fraction of variants assumed to be causal by LDpred's sampler.
 It defaults to `1 0.1 0.01 0.001 0.3 0.03 0.003 inf`.
-Specifying `inf` causes LDpred to use a different estimation weighting algorithm [1].
+Specifying `inf` causes LDpred to perform an additional scoring with a different estimation weighting algorithm [1].
 
 
 There are many additional arguments you can tinker with.
