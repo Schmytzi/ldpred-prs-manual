@@ -177,11 +177,14 @@ The results are then summed up for each individual.
 The script [`score.slurm`](score.slurm) can be used to submit the calculation for each chromosome and assumed fraction of causal SNPs.
 If you used default parameters in all preceding steps, you needn't change anything.
 However, if you modified the assumed fractions, the range of array job indexes must be adjusted.
-You need $j = \# fractions * \# chromosomes$ jobs.
-Therefore, the index range must be 0-($j-1$) (default: 0-175).
+You need $J = F * C$ jobs, where $F$ is the number of fractions passed as parameter `f` and $C$ the number of chromosomes.
+Therefore, the index range must run from 0 to $J-1$ (default: 0-175).
 
 *Note:* This will spawn *a lot* of relatively short jobs, which will probably clog up your queue.
 You should warn your colleagues beforehand in case they need to submit urgent tasks to the cluster.
+
+## See also
+* [LDpred GitHub Repository](https://github.com/bvilhjal/ldpred)
 
 ## References
 [1]: Vilhjálmsson, B. J., Yang, J., Finucane, H. K., Gusev, A., Lindström, S., Ripke, S., … Price, A. L. (2015). Modeling Linkage Disequilibrium Increases Accuracy of Polygenic Risk Scores. American Journal of Human Genetics, 97(4), 576–592. https://doi.org/10.1016/j.ajhg.2015.09.001
