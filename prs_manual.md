@@ -165,7 +165,7 @@ ldpred gibbs --help
 
 The LD pattern is saved to a file named `<ldf>_ldradius<ldr>.pkl.gz` in directory `ld`.
 This file can be reused across analyses which use the same LD radius.
-If it doesn't exist, it will be created, which may take several hours.
+If it doesn't exist, it will be created, which may take several hours depending on your data set.
 
 ## Calculating Your Scores
 ### Scoring Individual Chromosomes, Models
