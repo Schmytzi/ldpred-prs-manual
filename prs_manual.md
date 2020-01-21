@@ -1,6 +1,6 @@
 # Polygenic Risk Score Estimation with LDpred and PLINK
 
-## Requirements
+## Software Requirements
 
 This procedure requires LDpred and PLINK (Version 1 *and* 2) to be installed.
 They're installed on all UPPMAX systems and you can load them like this:
@@ -59,6 +59,12 @@ Where all directories are *empty*, except for:
 
 You can use [`make_dirs`](make_dirs) to create all the empty directories in one step.
 I recommend creating the non-empty directories as symlinks to the shared locations holding all your required data.
+
+## GWAS
+Run a GWAS on the trait you are interested in.
+The procedure will not be discussed furthere.
+However, you should restrict your association study to genotyped SNPs.
+This will greatly reduce the necessary computing power and speed up the process of calculating LD patterns and scores while delivering results comparable with imputed data.
 
 ## Preparing the LD Estimation
 
