@@ -139,15 +139,23 @@ Please see [`estimate_weights.slurm`](estimate_weights.slurm) for a template.
 The call has two parameters which need adjustment:
 
 * `N`: The number of individuals in your GWAS (analogous to the coordination step)
-* `ldr`: The LD radius, i.e. the number of SNPs around the focal SNP which LD should be adjusted for. Recommended value: # of total SNPs / 3000.
+* `ldr`: The LD radius, i.e. the number of SNPs around the focal SNP which LD should be adjusted for. Recommended value: $\frac{S}{3000}$, where $S$ is the number of total SNPs in your GWAS.
 
-**Important:**
-For the UK Biobank data the recommended LD radius is 2900.
-However, the larger your radius, the higher LDpred's memory usage.
-In this case, it is more than 256 GB.
+**Performance Considerations:**
+This step is computationally expensive.
+See the following table to get an idea about the necessary power and time:
 
-The optional parameter `f` is used to specify the fraction of causal variants assumed by LDpred.
+| Data set       |    # SNPs | LD radius | RAM (GB) | Computing Time |
+|----------------|----------:|----------:|---------:|----------------|
+| Imputed        | 8,939,991 |     2,900 |      280 | 5 days         |
+| Genotyped only |   770,240 |       260 |          |                |
+|                |           |           |          |                |
+
+The optional parameter `f` is used to specify the fraction of variants assumed to be causal by LDpred's sampler.
 It defaults to `1 0.1 0.01 0.001 0.3 0.03 0.003 inf`.
+Specifying `inf` causes LDpred to use a different estimation weighting algorithm [1].
+
+
 There are many additional arguments you can tinker with.
 It's best to check the documentation using
 
@@ -174,3 +182,6 @@ Therefore, the index range must be 0-($j-1$) (default: 0-175).
 
 *Note:* This will spawn *a lot* of relatively short jobs, which will probably clog up your queue.
 You should warn your colleagues beforehand in case they need to submit urgent tasks to the cluster.
+
+## References
+[1]: Vilhjálmsson, B. J., Yang, J., Finucane, H. K., Gusev, A., Lindström, S., Ripke, S., … Price, A. L. (2015). Modeling Linkage Disequilibrium Increases Accuracy of Polygenic Risk Scores. American Journal of Human Genetics, 97(4), 576–592. https://doi.org/10.1016/j.ajhg.2015.09.001
