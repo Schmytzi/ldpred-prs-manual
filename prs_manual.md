@@ -168,6 +168,7 @@ This file can be reused across analyses which use the same LD radius.
 If it doesn't exist, it will be created, which may take several hours.
 
 ## Calculating Your Scores
+### Scoring Individual Chromosomes, Models
 After LDpred has finished estimation LD and SNP weights, it's time to finally compute polygenic risk scores.
 I did it with plink but this functionality is offered by LDpred, as well.
 However, both tools use different algorithms, so do not expect the results to be the same.
@@ -186,6 +187,11 @@ You should warn your colleagues beforehand in case they need to submit urgent ta
 *Note:* Each task is single-threaded and can run on a single core, making very efficient use of your resources.
 However, having 16 different processes running on the same node incurs heavy performance penalties (Cache misses, IO controller saturation) and therefore increases run time.
 This is why the default script uses two cores per task.
+
+### Merging Scores
+The scoring jobs generate a lot of files.
+In this step we will merge them into one single table which you can work with.
+See [`merge_scores.R`](merge_scores.R) for a script. 
 
 ## See also
 * [LDpred GitHub Repository](https://github.com/bvilhjal/ldpred)
