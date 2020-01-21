@@ -84,8 +84,8 @@ Where:
 
 * `chr` is the SNP's chromosome
 * `pos` is the SNP's base pair
-* `ref` is the reference allele
-* `alt` is the alternative allele
+* `ref` is the effective allele (i.e. A1)
+* `alt` is the non-effective allele (i.e. A2)
 * `reffrq` is the frequency of the **reference** allele
 * `info` is the imputation quality as info score
 * `rs` is the rs ID
