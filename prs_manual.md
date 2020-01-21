@@ -148,8 +148,8 @@ See the following table to get an idea about the necessary power and time:
 | Data set       |    # SNPs | LD radius | RAM (GB) | Computing Time |
 |----------------|----------:|----------:|---------:|----------------|
 | Imputed        | 8,939,991 |     2,900 |      280 | 5 days         |
-| Genotyped only |   770,240 |       260 |          |                |
-|                |           |           |          |                |
+| Genotyped only |   770,240 |       260 |       11 | 40 minutes     |
+| **Ratios**     |  **11.6** |  **11.6** | **25.5** | **180**        |
 
 The optional parameter `f` is used to specify the fraction of variants assumed to be causal by LDpred's sampler.
 It defaults to `1 0.1 0.01 0.001 0.3 0.03 0.003 inf`.
