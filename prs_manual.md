@@ -178,10 +178,14 @@ The script [`score.slurm`](score.slurm) can be used to submit the calculation fo
 If you used default parameters in all preceding steps, you needn't change anything.
 However, if you modified the assumed fractions, the range of array job indexes must be adjusted.
 You need $J = F * C$ jobs, where $F$ is the number of fractions passed as parameter `f` and $C$ the number of chromosomes.
-Therefore, the index range must run from 0 to $J-1$ (default: 0-175).
+The index range you specify in your slurm script must run from 0 to $J-1$ (default: 0-175).
 
 *Note:* This will spawn *a lot* of relatively short jobs, which will probably clog up your queue.
 You should warn your colleagues beforehand in case they need to submit urgent tasks to the cluster.
+
+*Note:* Each task is single-threaded and can run on a single core, making very efficient use of your resources.
+However, having 16 different processes running on the same node incurs heavy performance penalties (Cache misses, IO controller saturation) and therefore increases run time.
+This is why the default script uses two cores per task.
 
 ## See also
 * [LDpred GitHub Repository](https://github.com/bvilhjal/ldpred)
