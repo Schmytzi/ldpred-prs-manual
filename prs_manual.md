@@ -193,8 +193,47 @@ The scoring jobs generate a lot of files.
 In this step we will merge them into one single table which you can work with.
 See [`merge_scores.R`](merge_scores.R) for a script. 
 
+## Using Your Scores
+Polygenic risk scores themselves are not strongly correlated with the trait you used to calculate them.
+Additionally, you have used different models to compute them and must now decide which model fits your trait best.
+In order for them to be useful, you must integrate them into a model along with all the covariates you used in your GWAS.
+To estimate their power, you can simply compare the resulting model to one without the score (*null model* from here on).
+
+You generate your null model like this:
+```R
+null_model <- glm(trait ~ ARRAY + AGE + OTHER_COVARS, data=your_data)
+```
+
+Analogously, compute your models including the scores as follows:
+
+```R
+prs_model <- glm(trait ~ ARRAY + AGE + OTHER_COVARS + SCORE, data=your_data)
+```
+
+There are a lot of ways to compare two GLM's to each other.
+E.g. you can call
+```R
+anova(null_model, prs_model)
+```
+which will report a significance value qunatifying how much the second model improves on the null model.
+
+### Evaluating Continuous Traits
+
+If you want to get $R^2$ values for each model, you either have to predict values using your models (with R's `predict` function) or use the package `piecewiseSEM` (my preferred way):
+
+```R
+library(piecewiseSEM)
+rsquared(prs_model)
+```
+This will output an estimated $R^2$ for your model.
+This allows you to simply calculate $\Delta R^2$ by subtracting the results.
+
+### Evaluating Binary Traits
+
+
 ## See also
 * [LDpred GitHub Repository](https://github.com/bvilhjal/ldpred)
+* [LDpred tutorial on YouTube](https://www.youtube.com/watch?v=YAcjqu200MA)
 
 ## References
 [1]: Vilhjálmsson, B. J., Yang, J., Finucane, H. K., Gusev, A., Lindström, S., Ripke, S., … Price, A. L. (2015). Modeling Linkage Disequilibrium Increases Accuracy of Polygenic Risk Scores. American Journal of Human Genetics, 97(4), 576–592. https://doi.org/10.1016/j.ajhg.2015.09.001
