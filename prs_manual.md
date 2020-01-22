@@ -232,8 +232,19 @@ This allows you to simply calculate $\Delta R^2$ by subtracting the results.
 
 
 ## See also
+
+### LDpred Resources
 * [LDpred GitHub Repository](https://github.com/bvilhjal/ldpred)
 * [LDpred tutorial on YouTube](https://www.youtube.com/watch?v=YAcjqu200MA)
+
+### PLINK Resources
+* [PLINK 1 Documentation](https://www.cog-genomics.org/plink/1.9/)
+* [PLINK 2 Documentation](https://www.cog-genomics.org/plink/2.0/)
+  
+### R Resources
+* [A Forward-Pipe Operator for R • magrittr](https://magrittr.tidyverse.org/)
+* [Simple, Consistent Wrappers for Common String Operations • stringr](https://stringr.tidyverse.org/)
+* [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
 
 ## References
 [1]: Vilhjálmsson, B. J., Yang, J., Finucane, H. K., Gusev, A., Lindström, S., Ripke, S., … Price, A. L. (2015). Modeling Linkage Disequilibrium Increases Accuracy of Polygenic Risk Scores. American Journal of Human Genetics, 97(4), 576–592. https://doi.org/10.1016/j.ajhg.2015.09.001
