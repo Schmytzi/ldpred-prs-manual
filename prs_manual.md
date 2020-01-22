@@ -86,7 +86,7 @@ Where:
 * `pos` is the SNP's base pair
 * `ref` is the effective allele (i.e. A1)
 * `alt` is the non-effective allele (i.e. A2)
-* `reffrq` is the frequency of the **reference** allele
+* `reffrq` is the reference minor allele frequency (i.e. MAF)
 * `info` is the imputation quality as info score
 * `rs` is the rs ID
 * `pval` is the SNP's P value
