@@ -90,7 +90,7 @@ Where:
 * `info` is the imputation quality as info score
 * `rs` is the rs ID
 * `pval` is the SNP's P value
-* `effalt` is the beta value
+* `effalt` is the effect size ($\beta$ value or odds ratio)
 
 *Note*: If you use any version of LDpred before 1.0.0, the info score is ignored and you can safely set it to 1.
 
