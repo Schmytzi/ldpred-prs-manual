@@ -62,7 +62,7 @@ I recommend creating the non-empty directories as symlinks to the shared locatio
 
 ## GWAS
 Run a GWAS on the trait you are interested in.
-The procedure will not be discussed furthere.
+The procedure will not be discussed further.
 However, you should restrict your association study to genotyped SNPs.
 This will greatly reduce the necessary computing power and speed up the process of calculating LD patterns and scores while delivering results comparable with imputed data.
 
