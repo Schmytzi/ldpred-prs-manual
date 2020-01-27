@@ -12,14 +12,5 @@ ldpred coord \
   --gf reference_genotypes/merged \
   --ssf gwas/LDpred_format.txt \
   --N 0 \
-  --ssf-format CUSTOM \
-  --chr chr \
-  --pos pos \
-  --a1 a1 \
-  --a2 a2 \
-  --reffreq reffrq \
-  --info info \
-  --rs rs \
-  --pval pval \
-  --eff effalt \
+  --ssf-format STANDARD \
   --out coordination/coordination.coord
