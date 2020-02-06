@@ -61,7 +61,7 @@ setnames(gwas, "#CHROM", "CHR")
   # Merged on old IDs, so the deduplicated rsIDs are in column ID.y
   rsIds <- merged$ID.y
 
-ldpred <- convert_to_ldpred(merged, if (is_binary) merged$OR else merged$BETA)
+ldpred <- convert_to_ldpred(merged, if (is_binary) log(merged$OR) else merged$BETA)
 # Ensure proper ordering
 setkey(ldpred, chr, pos)
 # LDpred expects all chromosome specifications to start with "chr"
