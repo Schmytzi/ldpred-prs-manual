@@ -27,6 +27,6 @@ plink \
   --bed genotypes/chr${chr}.bed \
   --bim genotypes/chr${chr}.dedup.bim \
   --fam sample_info/samples.fam \
-  --score $weight_file 3 5 6 header sum \
+  --score $weight_file 3 5 7 header sum \
   --keep sample_info/validation.ids \
   --out scores/$weight_basename/scores_chr${chr}
