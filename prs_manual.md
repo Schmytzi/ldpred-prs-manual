@@ -77,20 +77,21 @@ We use the file format which was the default in the LDpred beta releases, called
 It is as follows:
 
 ```
-chr pos ref alt reffrq info rs pval effalt
+chr pos info rs pval nsamples a1 a2 eff reffreq
 ```
 
 Where:
 
 * `chr` is the SNP's chromosome
 * `pos` is the SNP's base pair
-* `ref` is the effective allele (i.e. A1)
-* `alt` is the non-effective allele (i.e. A2)
-* `reffrq` is the reference minor allele frequency (i.e. MAF)
 * `info` is the imputation quality as info score
 * `rs` is the rs ID
 * `pval` is the SNP's P value
-* `effalt` is the effect size ($\beta$ value or odds ratio)
+* `nsamples` is the sample size
+* `a1` is the effective allele
+* `a2` is the non-effective allele
+* `eff` is the effect size ($\beta$ value or log-odds ratio)
+* `reffreq` is the reference frequency
 
 *Note*: If you use any version of LDpred before 1.0.0, the info score is ignored and you can safely set it to 1.
 
