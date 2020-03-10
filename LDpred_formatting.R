@@ -19,20 +19,27 @@ get_gwas <- function(file_pattern){
 }
 
 convert_to_ldpred <- function(data, effect_column) {
-    data[, .(
+    # Grab all data we can use without modification
+    ldpred <- data[, .(
         chr = CHR,
         pos = POS.x,
-        ref = A1.x,
-        # A2 is a comma-separated list of all non-A1 alleles
-        # If the input bim hasn't been deduplicated, this can lead to invalid output 
-        alt = A2,
-        # reffrq is not the reference's freq, but the reference minor allele frequency
-        reffrq = MAF,
         info = INFO,
         rs = rsIds,
         pval = P,
-        effalt = effect_column
+        nsamples = OBS_CT
     )]
+    a1_is_minor <- data[, A1_FREQ < .5]
+    # We want the minor allele effect. Set effective allele to minor
+    ldpred[, a1 := ifelse(a1_is_minor, data$A1.y, data$AX)]
+    # Set ineffective allele to other allele
+    ldpred[, a2 := ifelse(!a1_is_minor, data$A1.y, data$AX)]
+    # If we have switched alleles, reverse effect
+    ldpred[, eff := ifelse(a1_is_minor, effect_column, -effect_column)]
+    # Reference frequency: 1 - effective allele frequency
+    ldpred[, reffreq := ifelse(a1_is_minor, 1-data$A1_FREQ, data$A1_FREQ)]
+    # Empty brackets to fix strange printing behaviour
+    # See https://stackoverflow.com/questions/32988099/
+    ldpred[]
 }
 
 # Load pre-computed SNP metadata
